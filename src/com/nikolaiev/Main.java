@@ -32,7 +32,6 @@ public class Main {
 
     }
 
-    // Method is working good if difference between coordinate of the same name less than 10, in other case throws  java.lang.OutOfMemoryError: Java heap space
     private static void horseMoving(int[][] chessBoard, int[] deltaX, int[] deltaY, ChessCell firstHorse, ChessCell secondHorse) throws ImpossibleMeetException {
         if ((firstHorse.getX() + firstHorse.getY()) % 2 == (secondHorse.getX() + secondHorse.getY()) % 2) {
             chessBoard[firstHorse.getY()][firstHorse.getY()] = 0;
@@ -46,7 +45,7 @@ public class Main {
                 if (x == secondHorse.getX() && y == secondHorse.getY()) break;
                 queue.remove();
                 for (int i = 0; i < 8; i++) {
-                    if (x + deltaX[i] >= 0 && x + deltaX[i] < 500 && y + deltaY[i] >= 0 && y + deltaY[i] < 500) {
+                    if (x + deltaX[i] >= 0 && x + deltaX[i] < 500 && y + deltaY[i] >= 0 && y + deltaY[i] < 500 && chessBoard[x+deltaX[i]][y+deltaY[i]]==0) {
                         queue.add(new ChessCell(x + deltaX[i], y + deltaY[i]));
                         chessBoard[x + deltaX[i]][y + deltaY[i]] = chessBoard[x][y] + 1;
                     }
